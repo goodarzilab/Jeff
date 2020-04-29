@@ -18,4 +18,4 @@ command:
 ## Output
   1. A binary heatmap of all the significant RNAs
   2. A normalized expression heatmap of all the significant RNAs
-  3. A bed file for the significant RNAs
+  3. A bed file OF the significant RNAs
