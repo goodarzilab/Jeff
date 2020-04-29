@@ -7,3 +7,8 @@ dependencies:
   - pandas
   - scipy
   - seaborn
+  - statsmodels
+  - matplotlib
+  - multiprocess
+  - pysam
+  
