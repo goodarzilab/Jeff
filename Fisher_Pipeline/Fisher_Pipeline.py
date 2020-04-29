@@ -12,7 +12,6 @@ import re
 import numpy as np
 import matplotlib.pyplot as plt
 from statsmodels.stats.multitest import fdrcorrection
-import time
 
 def processInput(path):
     samfile = pysam.AlignmentFile(path, "rb")
@@ -34,7 +33,7 @@ def processInput(path):
         if seq_strand in rna:
             rna[seq_strand][1] += cpm
         else:
-            bed = f"{ref_id}\t{ref_start}\t{ref_end}"
+            bed = f"{ref_id}\t{ref_start}\t{ref_end}\t.\t.\t{strand}"
             rna[seq_strand] = [sample_name, cpm, bed]
     return rna
 
@@ -115,7 +114,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     data_path, ctrl_label_path, test_label_path = None, None, None
-    dust, filter, thresh = 2.5, "count", 3
+    dust, thresh = 2.5, 3
 
     if args.p:
         data_path = args.p
@@ -131,18 +130,12 @@ if __name__ == "__main__":
     bamfiles =[f for f in glob.glob(data_path + "**/*.bam", recursive=True)]
 
     print("Begin Process Data", len(bamfiles), "Files.")
-    start = time.perf_counter()
     num_cores = cpu_count()
     rna_results = Parallel(n_jobs=num_cores)(delayed(processInput)(i) for i in bamfiles)
-    end = time.perf_counter()
-    print("Time:", (end-start)/60)
 
-    print("Begin Aggregating Data")
-    start = time.perf_counter()
+    print("Begin Aggregating RNAs")
     agg_rna, loc_rna = aggregateRNA(rna_results)
     print(len(agg_rna), "sequences")
-    end = time.perf_counter()
-    print("Time:", (end-start)/60)
 
     ctrl_file = open(ctrl_label_path,'r')
     test_file = open(test_label_path,'r')
@@ -154,16 +147,11 @@ if __name__ == "__main__":
     test_total = len(test_labels)
 
 
-    print("Begin Filtering Data")
-    start = time.perf_counter()
+    print("Begin Filtering RNAs")
     agg_rna = filterRNA(agg_rna, dust, thresh)
     print(len(agg_rna), "rnas post filter")
-    end = time.perf_counter()
-    print("Time:", (end-start)/60)
-
-    print("Begin Creating Count Data Matrix")
-    start = time.perf_counter()
-
+               
+    print("Enumerating Counts")
     pres_df = np.zeros((len(agg_rna), 2))
     seq_strand_index = list(agg_rna.keys())
     for i in range(len(seq_strand_index)):
@@ -177,16 +165,10 @@ if __name__ == "__main__":
             else:
                 assert False
     pres_df = pd.DataFrame(pres_df, index=seq_strand_index, columns=["test_count", "ctrl_count"])
-    print(pres_df.shape)
-    end = time.perf_counter()
-    print("Time:", (end-start)/60)
 
     #Fisher Part
     print("Begin Fisher Exact Test")
-    start = time.perf_counter()
     pres_df["pval"] = pres_df.apply(fisher, args=(ctrl_total, test_total),axis=1)
-    end = time.perf_counter()
-    print("Time:", (end-start)/60)
 
     #Fdr Part
     print("Begin FDR correction. Alpha=0.1")
@@ -199,12 +181,13 @@ if __name__ == "__main__":
         sig_df = pres_df[rej]
     sig_df = sig_df.sort_values(by="test_count", ascending = False)
     sig_index = sig_df.index
-    print(len(sig_index), "significant RNAs found.")
+    num_sig = len(sig_index)
+    print(num_sig, "significant RNAs")
 
-    print("Creating Data Matrix for Plot")
-    ctrl_df = np.zeros((len(sig_index), ctrl_total))
-    test_df = np.zeros((len(sig_index), test_total))
-    for i in range(len(sig_index)):
+    print("Creating Data Matrix for Visualization")
+    ctrl_df = np.zeros((num_sig, ctrl_total))
+    test_df = np.zeros((nums_sig, test_total))
+    for i in range(num_sig):
         for j in range(test_total + ctrl_total):
             if j < ctrl_total:
                 if ctrl_labels[j] in agg_rna[sig_index[i]]:
@@ -230,7 +213,7 @@ if __name__ == "__main__":
     ax.set(xlabel="Control", ylabel="RNAs")
     ax2.set(xlabel="Test")
     ax.set_fc("w")
-    plt.savefig("Binary Test Pipeline RNA Heatmap.png")
+    plt.savefig("Binary RNA Heatmap.png")
 
 
     #Normalize by row:
@@ -247,7 +230,8 @@ if __name__ == "__main__":
     ax.set(xlabel="Control", ylabel="RNAs")
     ax2.set(xlabel="Test")
     ax.set_fc("w")
-    plt.savefig("Normalized Test Pipeline RNA Heatmap.png")
+    plt.savefig("Normalized Expression RNA Heatmap.png")
+    
     #Bed + Annotation Part
     bed_data = pd.Series(sig_index).apply(addBed)
     bed_data.to_csv("sig_rna.bed", index=False, header=False)
