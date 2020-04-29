@@ -1,0 +1,9 @@
+name: fisher-environment
+
+dependencies:
+  - python=3.6
+  - numpy
+  - joblib
+  - pandas
+  - scipy
+  - seaborn
