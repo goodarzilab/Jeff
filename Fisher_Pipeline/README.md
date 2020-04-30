@@ -17,8 +17,8 @@ command:
       python3 Fisher_Pipeline.py --p ex_data/ --ctrl ex_control.txt --test ex_test.txt
      
 ## Arguments
-    --dust: Set threshold for dust score to eliminate low-complexity sequences. Pipeline will exclude RNAs that have a dust score higher or equal to [dust]
-    --t: Set threshold for filtering controls. Pipeline will exclude RNAs that are present in at least [t] amount of the control samples. 
+   --dust: Set threshold for dust score to eliminate low-complexity sequences. Pipeline will exclude RNAs that have a dust score higher or equal to [dust]
+   --t: Set threshold for filtering controls. Pipeline will exclude RNAs that are present in at least [t] amount of the control samples. 
       In addition, pipeline will automatically filter out all RNAs that are present in only one sample.
 ## Output
   1. A binary heatmap of all the significant RNAs
