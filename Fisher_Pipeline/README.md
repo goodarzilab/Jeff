@@ -19,7 +19,7 @@ command:
 ## Arguments
     --dust: Set threshold for dust score to eliminate low-complexity sequences. Pipeline will exclude RNAs that have a dust score higher or equal to [dust]
     --t: Set threshold for filtering controls. Pipeline will exclude RNAs that are present in at least [t] amount of the control samples. 
-      Pipeline will automatically filter out all RNAs that are present in only one sample.
+      In addition, pipeline will automatically filter out all RNAs that are present in only one sample.
 ## Output
   1. A binary heatmap of all the significant RNAs
   2. A normalized expression heatmap of all the significant RNAs
