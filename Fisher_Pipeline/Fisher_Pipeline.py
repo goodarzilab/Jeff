@@ -186,7 +186,7 @@ if __name__ == "__main__":
 
     print("Creating Data Matrix for Visualization")
     ctrl_df = np.zeros((num_sig, ctrl_total))
-    test_df = np.zeros((nums_sig, test_total))
+    test_df = np.zeros((num_sig, test_total))
     for i in range(num_sig):
         for j in range(test_total + ctrl_total):
             if j < ctrl_total:
