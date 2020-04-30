@@ -135,7 +135,7 @@ if __name__ == "__main__":
 
     print("Begin Aggregating RNAs")
     agg_rna, loc_rna = aggregateRNA(rna_results)
-    print(len(agg_rna), "sequences")
+    print(len(agg_rna), "rnas")
 
     ctrl_file = open(ctrl_label_path,'r')
     test_file = open(test_label_path,'r')
