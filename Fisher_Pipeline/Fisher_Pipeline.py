@@ -179,7 +179,7 @@ if __name__ == "__main__":
         sig_df = pres_df[pres_df["pval"] <= 0.05]
     else:
         sig_df = pres_df[rej]
-    sig_df = sig_df.sort_values(by="test_count", ascending = False)
+    sig_df = sig_df.sort_values(by="pval", ascending = False)
     sig_index = sig_df.index
     num_sig = len(sig_index)
     print(num_sig, "significant RNAs")
