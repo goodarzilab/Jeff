@@ -13,7 +13,7 @@ Command:
   2. Make sure to have a txt file with all the control sample names and another txt file with all the test sample names. Names 
      should be separated by a line within each file. Make sure the sample names match the bamfile names. For instance,
      S01 sample name in the txt file should correspond to S01.bam 
-     See ex_control.txt and ex_test.txt for example.
+     See `ex_control.txt` and `ex_test.txt` for example.
   3. Example call:
       <br> `python3 Fisher_Pipeline.py --p ex_data/ --ctrl ex_control.txt --test ex_test.txt`
      
