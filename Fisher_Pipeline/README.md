@@ -1,10 +1,11 @@
 # Fisher Pipeline
 command:
-<br> `python3 Fisher_Pipeline.py --p [path to diretory of bamfiles] 
-                       --ctrl [path to txt file of control sample names]
-                       --test [path to txt file of test sample names] 
-                       --dust [threshold for dust score, default 2.5]
-                       --t [threshold for filtering control, default 3]`
+<br> `python3 Fisher_Pipeline.py` 
+<br>  `--p [path to diretory of bamfiles]`
+<br>  `--ctrl [path to txt file of control sample names]`
+<br>  `--test [path to txt file of test sample names]` 
+<br>  `--dust [threshold for dust score, default 2.5]`
+<br>   `--t [threshold for filtering control, default 3]`
 
 
 ## Instruction to Run
@@ -14,11 +15,11 @@ command:
      S01 sample name in the txt file should correspond to S01.bam 
      See ex_control.txt and ex_test.txt for example.
   3. Example call:
-      python3 Fisher_Pipeline.py --p ex_data/ --ctrl ex_control.txt --test ex_test.txt
+      <br> `python3 Fisher_Pipeline.py --p ex_data/ --ctrl ex_control.txt --test ex_test.txt`
      
 ## Arguments
-   --dust: Set threshold for dust score to eliminate low-complexity sequences. Pipeline will exclude RNAs that have a dust score higher or equal to [dust]
-   <br>--t: Set threshold for filtering controls. Pipeline will exclude RNAs that are present in at least [t] amount of the control samples. 
+   `--dust`: Set threshold for dust score to eliminate low-complexity sequences. Pipeline will exclude RNAs that have a dust score higher or equal to [dust]
+   <br>`--t`: Set threshold for filtering controls. Pipeline will exclude RNAs that are present in at least [t] amount of the control samples. 
    <br> In addition, pipeline will automatically filter out all RNAs that are present in only one sample.
 ## Output
   1. A binary heatmap of all the significant RNAs
