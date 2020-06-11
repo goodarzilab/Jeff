@@ -1,7 +1,7 @@
 # Fisher Pipeline
-command:
+Command:
 <br> `python3 Fisher_Pipeline.py` 
-<br>  `--p [path to diretory of bamfiles]`
+<br>      `--p [path to diretory of bamfiles]`
 <br>  `--ctrl [path to txt file of control sample names]`
 <br>  `--test [path to txt file of test sample names]` 
 <br>  `--dust [threshold for dust score, default 2.5]`
