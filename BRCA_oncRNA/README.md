@@ -21,12 +21,12 @@ Code can be found in the following notebooks:
 - `cancer_enriched_loci_DE_analysis.ipynb`
 
 ## 3) BRCA Normal Thresholding
-Here we compare our breast cancer cell lines enriched RNAs with TCGA BRCA samples and and all TCGA normal samples. We perform a thresholding experiment to set a filter threshold (for presence in TCGA normal samples) for our putative oncRNAs. This is done to narrow down our pool of putative oncRNAs under consideration by eliminating RNAs found in abundance in normal tissues before statistical testing (Fisher Exact Test) for significance in TCGA BRCA. Resulting oncRNAs that are found to be significantly enriched in our cell lines and in TCGA BRCA are plotted with a heatmap.
+Here we compare our breast cancer cell lines enriched RNAs with TCGA BRCA samples and and all TCGA normal samples. We perform a thresholding experiment to set a filter threshold (for presence in TCGA normal samples) for our putative oncRNAs. This is done to narrow down our pool of putative oncRNAs under consideration by eliminating RNAs found in abundance in normal tissues before statistical testing (Fisher Exact Test) for significance in TCGA BRCA. Resulting oncRNAs that are found to be significantly enriched in our cell lines and in TCGA BRCA are plotted with a heatmap. <br>
 Code can be found in the notebook:
 - `BRCA_normal_thresholding.ipynb`
 
 ## 4) Survival Analysis
-
+- `survival_analysis.ipynb`
 
 ## 5) RNA Annotations
 
