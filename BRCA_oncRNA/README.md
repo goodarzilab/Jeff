@@ -25,8 +25,10 @@ Here we compare our breast cancer cell lines enriched RNAs with TCGA BRCA sample
 Code can be found in the notebook:
 - `BRCA_normal_thresholding.ipynb`
 
-## 4) Survival Analysis
+## 4) Survival Analysis and Metastatic DE Analysis
 - `survival_analysis.ipynb`
+- `metastatic_cell_lines_DE.ipynb`
+
 
 ## 5) RNA Annotations
 
