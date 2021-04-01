@@ -30,11 +30,6 @@ Code can be found in the notebook:
 - `metastatic_cell_lines_DE.ipynb`
 
 
-## 5) RNA Annotations
-
-
-
-
 
 
 
