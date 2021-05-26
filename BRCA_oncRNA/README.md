@@ -29,7 +29,9 @@ Code can be found in the notebook:
 - `survival_analysis.ipynb`
 - `metastatic_cell_lines_DE.ipynb`
 
-
-
-
+## 5) Finalizing oncRNAs for Experimental Validation
+Here we prioritize oncRNAs identified in the Nature Med cell lines and pan-cancer BRCA oncRNAs observed in the miniENCODE cell lines to move into experimental validation. 
+- `oncRNAs_combined.ipynb`
+Here we trim and finalize the oncRNA loci and generate the sequences for testing.
+- `oncRNAs_final_list.ipynb`
 
